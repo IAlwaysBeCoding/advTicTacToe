@@ -51,20 +51,20 @@ classic TicTacToe games).
 ## Notes
 Considering the presented advanced TicTacToe rules some things have to be
 noted:
-1) Inner TicTacToe games do not necessarily follow a strict alternation of
+1. Inner TicTacToe games do not necessarily follow a strict alternation of
 players
-2) Already won inner TicTacToe games might be played further (if they are
+2. Already won inner TicTacToe games might be played further (if they are
 jumped to) to determin the next outer field to be played in
-3) Jumping into a completed inner game is redirected into the source of the
+3. Jumping into a completed inner game is redirected into the source of the
 jump (if this leads to a loop the opposing player might chose the field the
 game is continued in)
 
 ## Implementation
 This is mostly a small project to practice Python. Thus, there is no goal or
 ambition where this leads to. Possible future goals might include:
-1) Finding an optimal strategy for small dimensions
-2) Increasing the dimension of the game in order to make a computation of
+1. Finding an optimal strategy for small dimensions
+2. Increasing the dimension of the game in order to make a computation of
 winning regions impossible
-3) Trying to write an AI to play this game (more interesting for higher
+3. Trying to write an AI to play this game (more interesting for higher
 dimensions)
 
