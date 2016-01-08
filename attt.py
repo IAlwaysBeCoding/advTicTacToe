@@ -44,10 +44,10 @@ class Tictactoe():
                 return x == y or x == len(DIMENSION) - y - 1
             self.field[x][y] = player
             if not self.has_winner:
-                column_sum = sum([PLAYER_ENTRY(self.field[x][v]) for v in DIMENSION])
-                row_sum = sum([PLAYER_ENTRY(self.field[v][y]) for v in DIMENSION])
-                maindiagonal_sum = sum([PLAYER_ENTRY(self.field[v][v]) for v in DIMENSION])
-                counterdiagonal_sum = sum([PLAYER_ENTRY(self.field[v][len(DIMENSION)) - v - 1] for v in DIMENSION])
+                column_sum = sum([PLAYER_ENTRY[self.field[x][v]] for v in DIMENSION])
+                row_sum = sum([PLAYER_ENTRY[self.field[v][y]] for v in DIMENSION])
+                maindiagonal_sum = sum([PLAYER_ENTRY[self.field[v][v]] for v in DIMENSION])
+                counterdiagonal_sum = sum([PLAYER_ENTRY[self.field[v][len(DIMENSION) - v - 1]] for v in DIMENSION])
                 sums = [column_sum, row_sum, maindiagonal_sum, counterdiagonal_sum]
                 if WINNING_SUM[player] in sums:
                     self.has_winner = True
