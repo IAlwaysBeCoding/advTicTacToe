@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from itertools import chain
 
 class IllegalMove(Exception):
     def __init__(self, board, move):
@@ -11,20 +12,15 @@ class Tictactoe():
     PLAYER_ENTRY = [0, -1, 1]
 
     def __init__(self, dimension = 3, base = None):
-        def init_inner_tictactoe(dimension):
-            inner_field = []
-            for i in dimension:
-                inner_field.append([])
-                for j in dimension:
-                    inner_field[i].append(0)
-            return inner_field
-
+        
+        init_inner_tictactoe = lambda d : list([0] * len(d)  for i in range(len(d)))
+        
         if not base:
             self.has_winner = False
             self.winner = 0
             self.dimension = range(0, dimension)
             self.winning_sum = list(map(lambda x: len(self.dimension) * x, Tictactoe.PLAYER_ENTRY))
-            self.field = init_inner_tictactoe(self.dimension)
+            self.field = init_inner_tictactoe(d=self.dimension)
         else:
             self.has_winner = base.has_winner
             self.winner = base.winner
@@ -32,14 +28,14 @@ class Tictactoe():
             self.winning_sum = base.winning_sum
             self.field = base.field.copy()
 
-    def possible_moves(self):
-        moves = []
-        for x in self.dimension:
-            for y in self.dimension:
-                if self.field[x][y] == 0:
-                    moves.append((x, y))
-        return moves
-
+	def possible_moves(self):
+		
+        is_empty = lambda x, y :(x, y) if self.field[x][y] == 0 else False
+        d = len(self.dimensions)
+        result = [is_empty(i/d, (i % d)) for i, value in enumerate(chain.from_iterable(self.field))]
+		
+        return filter(lambda r : r  , result)
+		
     def apply_move(self, x, y, player):
         if not self.field[x][y] == 0:
             raise IllegalMove(self, (x, y))
